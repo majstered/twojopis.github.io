@@ -1,23 +1,128 @@
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
-  <title>🕰️ Twój czas, Twoje zdrowie</title>
+  <link rel="icon" type="image/png" href="aplikacje.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ramzi Studio – Aplikacje dla Ciebie</title>
   <style>
-    body {
-      background-color: #fef4d1;
-      font-family: sans-serif;
-      margin: 0;
-      padding: 40px;
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.2), transparent 60%),
+                  radial-gradient(circle at 70% 70%, rgba(255,255,255,0.15), transparent 60%);
+      animation: fogMove 60s infinite linear;
+      z-index: -1;
     }
-    h1 {
-      font-size: 32px;
+    @keyframes fogMove {
+      0% { background-position: 0% 0%, 100% 100%; }
+      100% { background-position: 100% 100%, 0% 0%; }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #aaa, 0 0 20px #aaa; }
+      to   { text-shadow: 0 0 20px #fff, 0 0 30px #fef4d1; }
+    }
+    @keyframes fadeInUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    body {
+      font-family: sans-serif;
+      background-color: #fef4d1;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: linear-gradient(90deg, #444, #222);
+      color: white;
+      padding: 40px 20px;
       text-align: center;
-      color: #222;
+      text-shadow: 2px 2px 4px #00000066;
+      animation: fadeIn 2s ease-out forwards;
+    }
+    header h1 {
+      font-size: 42px;
+      margin: 0;
+      animation: fadeIn 2s ease-out forwards, glow 3s ease-in-out infinite alternate;
+    }
+    main {
+      padding: 20px;
+    }
+    .app-card {
+      background-color: #fef4d1;
+      border-radius: 12px;
+      padding: 30px;
+      margin: 50px auto;
+      max-width: 960px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+      animation: fadeInUp 1s ease-out forwards;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    .fade-1 { animation-delay: 0.3s; }
+    .fade-2 { animation-delay: 0.6s; }
+    .fade-3 { animation-delay: 0.9s; }
+    ul {
+      margin: 10px 0 0 0;
+    }
+    a {
+      color: #0044cc;
+      text-decoration: none;
+      position: relative;
+    }
+    a::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: #0044cc;
+      visibility: hidden;
+      transform: scaleX(0);
+      transition: all 0.3s ease-in-out;
+    }
+    a:hover::after {
+      visibility: visible;
+      transform: scaleX(1);
+    }
+    footer {
+      text-align: center;
+      padding: 10px;
+      background-color: #f9e6bd;
+      font-size: 14px;
+    }
+    .btn {
+      display: inline-block;
+      background-color: #28a745;
+      color: white;
+      font-weight: bold;
+      padding: 12px 24px;
+      text-decoration: none;
+      border-radius: 8px;
+      font-family: sans-serif;
+      font-size: 16px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      margin-right: 16px;
     }
   </style>
 </head>
 <body>
-  <h1>🕰️ Twój czas, Twoje zdrowie</h1>
+  <header>
+    <h1>🕰️ Twój czas, Twoje zdrowie</h1>
+  </header>
+  <main>
+
+  <footer>
+    © 2025 Ramzi Studio – Wszystkie prawa zastrzeżone
+  </footer>
 </body>
 </html>
