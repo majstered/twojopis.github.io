@@ -1,128 +1,155 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <link rel="icon" type="image/png" href="aplikacje.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Ramzi Studio – Aplikacje dla Ciebie</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Strefa C • dla szukających innych dróg</title>
+  <meta name="description" content="Religie świata, różnica między wiarą a sektą, duchowe rozeznanie i wybór drogi, która prowadzi do pokoju i dobra."/>
   <style>
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.2), transparent 60%),
-                  radial-gradient(circle at 70% 70%, rgba(255,255,255,0.15), transparent 60%);
-      animation: fogMove 60s infinite linear;
-      z-index: -1;
+    :root{
+      --bg:#fbfaf7;
+      --card:#ffffff;
+      --ink:#1f2430;
+      --muted:#667085;
+      --blue:#0a4fa3;
+      --blue-ink:#ffffff;
+      --border:#e6e6ea;
+      --radius:20px;
+      --shadow:0 10px 32px rgba(0,0,0,.08);
+      --maxw:1000px;
     }
-    @keyframes fogMove {
-      0% { background-position: 0% 0%, 100% 100%; }
-      100% { background-position: 100% 100%, 0% 0%; }
+    .dark{
+      --bg:#0f1420;
+      --card:#141824;
+      --ink:#e7ecf6;
+      --muted:#aab3c6;
+      --blue:#0b3d7a;
+      --blue-ink:#ffffff;
+      --border:#263049;
+      --shadow:0 10px 40px rgba(0,0,0,.4);
     }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
+
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; background:var(--bg); color:var(--ink);
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,Arial,"Apple Color Emoji","Segoe UI Emoji";
+      line-height:1.65; display:flex; flex-direction:column; min-height:100vh;
     }
-    @keyframes glow {
-      from { text-shadow: 0 0 10px #aaa, 0 0 20px #aaa; }
-      to   { text-shadow: 0 0 20px #fff, 0 0 30px #fef4d1; }
-    }
-    @keyframes fadeInUp {
-      to { opacity: 1; transform: translateY(0); }
-    }
-    body {
-      font-family: sans-serif;
-      background-color: #fff3ce;
-      margin: 0;
-      padding: 0;
-    }
-    header {
-      background: linear-gradient(90deg, #444, #222);
-      color: white;
-      padding: 40px 20px;
-      text-align: center;
-      text-shadow: 2px 2px 4px #00000066;
-      animation: fadeIn 2s ease-out forwards;
-    }
-    header h1 {
-      font-size: 42px;
-      margin: 0;
-      animation: fadeIn 2s ease-out forwards, glow 3s ease-in-out infinite alternate;
-    }
-    main {
-      padding: 20px;
-    }
-    .app-card {
-      background-color: #fef4d1;
-      border-radius: 12px;
-      padding: 30px;
-      margin: 50px auto;
-      max-width: 960px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-      animation: fadeInUp 1s ease-out forwards;
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    .fade-1 { animation-delay: 0.3s; }
-    .fade-2 { animation-delay: 0.6s; }
-    .fade-3 { animation-delay: 0.9s; }
-    ul {
-      margin: 10px 0 0 0;
-    }
-    a {
-      color: #0044cc;
-      text-decoration: none;
-      position: relative;
-    }
-    a::after {
-      content: '';
-      position: absolute;
-      width: 100%;
-      height: 2px;
-      bottom: 0;
-      left: 0;
-      background-color: #0044cc;
-      visibility: hidden;
-      transform: scaleX(0);
-      transition: all 0.3s ease-in-out;
-    }
-    a:hover::after {
-      visibility: visible;
-      transform: scaleX(1);
-    }
-    footer {
-      text-align: center;
-      padding: 10px;
-      background-color: #f9e6bd;
-      font-size: 14px;
-    }
-    .btn {
-      display: inline-block;
-      background-color: #28a745;
-      color: white;
-      font-weight: bold;
-      padding: 12px 24px;
-      text-decoration: none;
-      border-radius: 8px;
-      font-family: sans-serif;
-      font-size: 16px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-      margin-right: 16px;
-    }
+    a{color:inherit; text-decoration:none}
+    .wrap{width:min(100%,var(--maxw)); margin-inline:auto; padding:clamp(12px,2vw,24px)}
+
+    header{position:sticky; top:0; z-index:20; backdrop-filter:saturate(180%) blur(6px)}
+    .bar{display:flex; align-items:center; justify-content:space-between; gap:12px;
+      background:color-mix(in oklab, var(--card) 80%, transparent);
+      border:1px solid var(--border); border-radius:16px; padding:10px 14px; box-shadow:var(--shadow);}
+    .title{font-weight:800; letter-spacing:.2px}
+    .mode-btn{appearance:none; border:1px solid var(--border); background:var(--card); color:var(--ink);
+      padding:8px 12px; border-radius:12px; cursor:pointer; font-weight:600}
+
+    .hero{margin-top:clamp(18px,3vh,38px); border-radius:var(--radius); background:var(--blue); color:var(--blue-ink);
+      box-shadow:var(--shadow); overflow:hidden; position:relative}
+    .hero::after{content:""; position:absolute; inset:auto -20% -35% -20%; height:60%;
+      background:linear-gradient(to top, rgba(255,255,255,.18), rgba(255,255,255,0) 60%); transform:skewY(-6deg)}
+    .hero-inner{padding:clamp(18px,3.5vw,42px); text-align:center}
+    .kicker{font-size:.95rem; letter-spacing:.08em; text-transform:uppercase; opacity:.9}
+    h1{margin:.1em 0 .2em; font-size:clamp(1.6rem, 2.4vw + .6rem, 2.4rem); line-height:1.15}
+    .lead{margin:0 auto; max-width:70ch; font-size:clamp(1rem, .8vw + .8rem, 1.25rem); opacity:.98}
+
+    .card{margin-top:clamp(22px,4vh,46px); background:var(--card); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow)}
+    .card-inner{padding:clamp(16px,3.2vw,32px)}
+    .card-inner p{margin:0 0 1.05em}
+    .soft{color:var(--muted)}
+    blockquote{margin:1.2em 0; padding:1em 1.2em; border-left:4px solid var(--blue); background:color-mix(in oklab, var(--card) 88%, var(--blue) 12%); border-radius:12px}
+    blockquote p{margin:.2em 0}
+
+    .nav{display:flex; flex-wrap:wrap; gap:12px; margin-top:clamp(16px,2.5vh,28px)}
+    .btn{display:inline-flex; align-items:center; justify-content:center; gap:.5rem; padding:.8rem 1.1rem;
+      border-radius:14px; border:1px solid var(--border); background:var(--card); box-shadow:var(--shadow); font-weight:700}
+    .btn.blue{background:var(--blue); color:var(--blue-ink); border-color:transparent}
+    .btn:hover{transform:translateY(-1px)}
+    .ghost{opacity:.9}
+
+    footer{color:var(--muted); font-size:.9rem; margin:24px 0 8px; text-align:center}
   </style>
 </head>
 <body>
-  <header>
-    <h1>🕰️ Twój czas, Twoje zdrowie</h1>
-  </header>
-  <main>
+  <div class="wrap">
+    <header aria-label="Nagłówek">
+      <div class="bar">
+        <div class="title">Strefa C — inne religie i duchowe drogi</div>
+        <button class="mode-btn" id="modeBtn" type="button" aria-pressed="false" title="Przełącz: dzień / noc">☀️ Dzień / 🌙 Noc</button>
+      </div>
+    </header>
 
-  <footer>
-    © 2025 Ramzi Studio – Wszystkie prawa zastrzeżone
-  </footer>
+    <section class="hero" aria-label="Wprowadzenie">
+      <div class="hero-inner">
+        <div class="kicker">C</div>
+        <h1>Witaj w strefie C — dla szukających innych dróg</h1>
+        <p class="lead">Religie świata, różnica między wiarą a sektą, i wybór drogi, która naprawdę prowadzi do pokoju i dobra.</p>
+      </div>
+    </section>
+
+    <article class="card" aria-label="Artykuł">
+      <div class="card-inner">
+        <p>Świat jest pełen religii. Niektóre powstały tysiące lat temu, inne zaledwie wczoraj. Ludzie od zawsze próbowali odpowiedzieć na to samo pytanie: <strong>skąd przychodzimy, po co żyjemy i dokąd zmierzamy.</strong></p>
+
+        <h3>🌿 Najważniejsze religie świata</h3>
+        <p>Do największych należą dziś: <br>
+        — <strong>Chrześcijaństwo</strong>, które mówi o miłości Boga do człowieka i zbawieniu w Chrystusie;<br>
+        — <strong>Islam</strong>, oparty na Koranie i proroku Mahomecie, wzywający do posłuszeństwa jedynemu Bogu;<br>
+        — <strong>Hinduizm</strong>, z jego bogatą filozofią i wiarą w reinkarnację;<br>
+        — <strong>Buddyzm</strong>, który szuka wyzwolenia z cierpienia przez zrozumienie i spokój wewnętrzny;<br>
+        — <strong>Judaizm</strong>, będący duchowym korzeniem wiary chrześcijańskiej.</p>
+
+        <p>Każda z nich, w swojej pierwotnej formie, poszukuje dobra, sensu i odpowiedzi na pytania o istnienie.</p>
+
+        <h3>⚖️ Religia a sekta — różnica</h3>
+        <p><strong>Religia</strong> to wspólnota, która prowadzi człowieka ku dobru, daje wolność sumienia, szanuje jego godność, pomaga wzrastać w miłości i pokoju.  
+        <strong>Sekta</strong> natomiast — choć często używa tych samych słów — zamyka, uzależnia i oddziela. Zamiast otwierać człowieka na świat i prawdę, buduje mur, tworzy zależność od lidera, wymaga bezwzględnego posłuszeństwa.</p>
+
+        <h3>🕳️ Cienie sekt</h3>
+        <p>Sekty żerują na ludzkim pragnieniu sensu i bliskości. Zaczyna się niewinnie — od spotkań, rozmów, obietnic pomocy. Potem przychodzi manipulacja: odbieranie wolności decyzji, kontrola emocji i życia prywatnego, wciąganie w uzależnienie duchowe, materialne, czasem seksualne. W najciemniejszych przypadkach — przemoc, samobójstwa, a nawet zbrodnie.</p>
+
+        <blockquote><p class="soft">W takich miejscach człowiek przestaje być osobą — staje się narzędziem. Traci siebie.</p></blockquote>
+
+        <h3>🌪️ Nowe „religie” XXI wieku</h3>
+        <p>Trend dzisiejszego świata wciąż wymyśla nowe formy duchowości. Czasem to tylko moda, czasem biznes, a czasem pułapka. Powstają prywatne „wiary” oparte na magii, energiiach, kultach guru, kosmitach, lalce Barbie czy „boskim ja”. Dają poczucie wyjątkowości, ale pozostawiają pustkę. Nie prowadzą dalej — tylko wokół samego siebie.</p>
+
+        <h3>💫 Jak rozpoznać zdrową wiarę?</h3>
+        <p>Prawdziwa wiara — niezależnie od tradycji — prowadzi do pokoju, dobra i miłości. Nie zabiera wolności, lecz pomaga ją mądrze wykorzystać. Jeśli w jakiejś wspólnocie czujesz przymus, strach lub poczucie winy – zatrzymaj się. Prawda nigdy nie zamyka człowieka – prawda go wyzwala.</p>
+
+        <h3>🌤️ Podsumowanie</h3>
+        <p>W życiu duchowym warto wybierać to, co niesie pokój, dobro i prawdę. Przyjrzyj się, gdzie dzieją się prawdziwe znaki i cuda, gdzie serca się zmieniają, a ludzie zaczynają żyć pełniej. Bo najbezpieczniejsza droga to ta, na której czujesz spokój ducha i światło nadziei — drogę, która prowadzi dalej niż tylko przez ten świat.</p>
+
+        <div class="nav" aria-label="Nawigacja">
+          <a href="https://majstered.github.io/siedliszcze.github.io/" class="btn">⬅️ Strona główna</a>
+          <a href="https://majstered.github.io/odpady.github.io/" class="btn blue">Przejdź do B</a>
+        </div>
+      </div>
+    </article>
+
+    <footer style="
+      background:color-mix(in oklab, var(--card) 70%, #f5e8c8);
+      color:var(--ink);
+      text-align:center;
+      padding:14px 8px;
+      font-size:0.95rem;
+      font-family:system-ui,Segoe UI,Roboto;
+      border-top:1px solid var(--border);
+      opacity:.9;
+    ">
+      ✦ © 2025 <strong>Albert Studio</strong> — Wszystkie prawa zastrzeżone
+    </footer>
+  </div>
+
+  <script>
+    // Tryb dzień/noc z pamięcią
+    const modeBtn = document.getElementById('modeBtn');
+    const LS_KEY = 'theme-pref';
+    const apply = (m)=>{ document.body.classList.toggle('dark', m==='dark'); modeBtn.setAttribute('aria-pressed', m==='dark'); }
+    const saved = localStorage.getItem(LS_KEY); if(saved){ apply(saved); }
+    modeBtn.addEventListener('click', ()=>{ const now = document.body.classList.contains('dark') ? 'light' : 'dark'; localStorage.setItem(LS_KEY, now); apply(now); });
+  </script>
 </body>
 </html>
